@@ -37,6 +37,10 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Amazones — Origins in Africa" },
+      { name: "twitter:description", content: "Présentation des projets des Amazones et village des contributions." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/750516d7-f5e3-4b12-a287-808c2d59017d/id-preview-604217a3--570d752e-2eea-4bb6-a55f-9d64fc08f696.lovable.app-1777695434185.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/750516d7-f5e3-4b12-a287-808c2d59017d/id-preview-604217a3--570d752e-2eea-4bb6-a55f-9d64fc08f696.lovable.app-1777695434185.png" },
     ],
     links: [
       {
