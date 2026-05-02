@@ -56,8 +56,8 @@ export const AmazoneSelector = ({ amazones, activeId, onSelect }: Props) => {
 
 const FlowerSelector = ({ amazones, activeId, onSelect }: Props) => {
   const [hoverId, setHoverId] = useState<string | null>(null);
-  const cx = 250;
-  const cy = 250;
+  const cx = 350;
+  const cy = 350;
   const petalRx = 22;
   const petalRy = 95;
   const petalCenterOffset = 95;
@@ -77,8 +77,8 @@ const FlowerSelector = ({ amazones, activeId, onSelect }: Props) => {
   return (
     <div className="flex flex-col items-center pt-2">
       <svg
-        viewBox="0 0 500 500"
-        className="w-[400px] h-[400px] md:w-[500px] md:h-[500px]"
+        viewBox="0 0 700 700"
+        className="w-[500px] h-[500px] md:w-[680px] md:h-[680px]"
         role="group"
         aria-label="Choisir une Amazone via la fleur"
       >
@@ -87,12 +87,12 @@ const FlowerSelector = ({ amazones, activeId, onSelect }: Props) => {
           const active = a.id === activeId;
           const isHover = a.id === hoverId;
           const isOn = isHover || active;
-          const firstName = a.name.split(" ")[0];
+          const fullName = a.name;
           const color = petalColors[i % petalColors.length];
 
           // Position du label à l'extérieur du pétale (le pétale est tourné de angle+90)
           const petalAngleRad = ((angle + 90) * Math.PI) / 180;
-          const labelRadius = petalCenterOffset + petalRy + 18;
+          const labelRadius = petalCenterOffset + petalRy + 28;
           const lx = cx + Math.cos(petalAngleRad) * labelRadius;
           const ly = cy + Math.sin(petalAngleRad) * labelRadius;
           const angleRad = petalAngleRad;
@@ -140,22 +140,21 @@ const FlowerSelector = ({ amazones, activeId, onSelect }: Props) => {
                   <title>{a.name}</title>
                 </ellipse>
               </g>
-              {/* Label visible uniquement pour le pétale actif/survolé */}
-              {isOn && (
-                <text
-                  x={lx}
-                  y={ly}
-                  textAnchor={anchor}
-                  dominantBaseline="middle"
-                  className="pointer-events-none select-none transition-all duration-300"
-                  fontFamily="Cormorant Garamond, serif"
-                  fontSize={18}
-                  fontStyle="italic"
-                  fill={`hsl(${color})`}
-                >
-                  {firstName}
-                </text>
-              )}
+              {/* Label : nom complet toujours affiché */}
+              <text
+                x={lx}
+                y={ly}
+                textAnchor={anchor}
+                dominantBaseline="middle"
+                className="pointer-events-none select-none transition-all duration-300"
+                fontFamily="Cormorant Garamond, serif"
+                fontSize={isOn ? 22 : 18}
+                fontStyle="italic"
+                fill={isOn ? `hsl(${color})` : "hsl(var(--foreground))"}
+                opacity={isOn ? 1 : 0.75}
+              >
+                {fullName}
+              </text>
             </g>
           );
         })}
